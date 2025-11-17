@@ -1,0 +1,12 @@
+/* Card Styling */
+.arc-grid {
+    display: grid;
+}
+
+
+/* Mobile View */
+.arc-grid {
+    grid-template-columns: auto;
+}
+/* Tablet View */
+/* Desktop View */
