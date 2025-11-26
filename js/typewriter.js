@@ -32,13 +32,13 @@ function startTyping(sectionKey) {
     element.textContent = textToType;
     element.style.borderRight = 'none'; // Remove cursor
     } else {
-        element.style.borderRight = '2px solid black'; // Restore cursor if preferences change
+        element.style.borderRight = '2px solid black'; // Restore cursor in case preferences change
         let i = 0
         function typeWriter() {
             if (i < textToType.length){
                 element.textContent += textToType.charAt(i);
                 i++;
-                setTimeout(typeWriter, typeSpeed)
+                typingTimeout = setTimeout(typeWriter, typeSpeed)
             }
         }
         typeWriter();   
