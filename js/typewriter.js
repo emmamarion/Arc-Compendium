@@ -8,6 +8,8 @@ const container = document.querySelector("#typewriter-container");
 const typeSpeed = 50; // miliseconds per character
 let typingTimeout;
 
+const talkSound = new Audio("audio/talkingSound.wav");
+
 function startTyping(sectionKey) {
     // Pick text from array
     const textToType = dialogueContent[sectionKey];
@@ -36,11 +38,24 @@ function startTyping(sectionKey) {
         let i = 0
         function typeWriter() {
             if (i < textToType.length){
-                element.textContent += textToType.charAt(i);
+                let char = textToType.charAt(i);
+                element.textContent += char
                 i++;
+
+                if (char != " " && i % 2 == 0) {
+                    playBlip();
+                }
                 typingTimeout = setTimeout(typeWriter, typeSpeed)
             }
         }
         typeWriter();   
     }
 }
+
+function playBlip() {
+    const soundClone = talkSound.cloneNode();
+    soundClone.playbackRate = 0.8 + Math.random() * 0.4
+    soundClone.volume = 0.5;
+    soundClone.play()
+}
+
