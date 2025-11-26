@@ -10,12 +10,12 @@
 <body>
     <nav>
         <button onclick="startTyping('home')">Home</button>
-        <button onclick="startTyping('about')">About</button>
         <button>Writing</button>
         <button>Photography</button>
+        <button onclick="startTyping('about')">About</button>
     </nav>
 
-   <p id="typewriter-container" tabindex="-1" aria-label="">
+   <p id="typewriter-container" tabindex="-1" aria-label="" role="region">
         <span aria-hidden="true" class="typewriter"></span>
    </p>
 </body>
