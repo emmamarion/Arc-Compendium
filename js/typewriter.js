@@ -1,18 +1,32 @@
 const dialogueContent = {
     home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website! If I'm taking too long to talk, try clicking on the speech bubble.",
+    writing: "WRITING",
+    photography: "PHOTAGRAPHY!",
     about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user experience (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
-
-
-// EVENT LISTENERS
-document.querySelector('#homeBtn').addEventListener('click', () => startTyping('home'));
-document.querySelector('#aboutBtn').addEventListener('click', () => startTyping('about'));
-document.querySelector('#muteBtn').addEventListener('click', () => toggleMute());
 
 // GLOBAL VARIABLES
 const element = document.querySelector(".typewriter"); // span element
 const container = document.querySelector("#typewriter-container"); // p element
 const speechBubble = document.querySelector(".speech-bubble"); // div element
+const contentSections = document.querySelectorAll(".content-section") // all content sections
+
+// BUTTONS
+const homeBtn = document.querySelector('#homeBtn') // home button
+const writingBtn = document.querySelector('#writingBtn') // writing button
+const photoBtn = document.querySelector('#photoBtn') // photo button
+const aboutBtn = document.querySelector('#aboutBtn') // about button
+const muteBtn = document.querySelector('#muteBtn') // mute button
+
+// EVENT LISTENERS
+homeBtn.addEventListener('click', () => startTyping('home'));
+writingBtn.addEventListener('click', () => startTyping('writing'))
+photoBtn.addEventListener('click', () => startTyping('photography'));
+aboutBtn.addEventListener('click', () => startTyping('about'));
+
+muteBtn.addEventListener('click', () => toggleMute());
+
+
 let currentFullText = "";
 const typeSpeed = 50; // miliseconds per character
 let typingTimeout;
@@ -35,6 +49,22 @@ for (let i = 0; i < poolSize; i++) {
 
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
+
+    // Convert sectionKey to the id of an HTML section element
+    const targetId = "#" + sectionKey + "-content";
+    
+    // Hide all sections
+    contentSections.forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // Get the section we wanto show
+    const targetSelection = document.querySelector(targetId);
+
+    // Show it
+    if (targetSelection) {
+        targetSelection.classList.remove('hidden')
+    }
 
     // Pick text from array and store globally for skip function
     currentFullText = dialogueContent[sectionKey];
