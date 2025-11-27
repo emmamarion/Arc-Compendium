@@ -1,5 +1,5 @@
 const dialogueContent = {
-    home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website!",
+    home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website! If I'm taking too long to talk, try clicking on the speech bubble.",
     about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user expierence (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
 
@@ -61,7 +61,7 @@ function startTyping(sectionKey) {
                 element.textContent += char
                 i++;
 
-                if (char != " " && i % 3 == 0) {
+                if (char != " " && i % 2 == 0) {
                     playBlip();
                 }
                 typingTimeout = setTimeout(typeWriter, typeSpeed)
@@ -72,18 +72,14 @@ function startTyping(sectionKey) {
 }
 
 let poolIndex = 0;
-let isMuted = false;
+let isMuted = true;
 
 function playBlip() {
     if (isMuted) return;
 
     const audio = audioPool[poolIndex];
     
-    const now = Date.now();
-    // Only play if 100ms have passed since the last beep
-    if (now - lastSoundTime < 100) {
-        return; 
-    }
+    if (window.innerWidth < 768) return;
 
     audio.currentTime = 0;
     audio.play();
