@@ -61,7 +61,7 @@ function startTyping(sectionKey) {
                 element.textContent += char
                 i++;
 
-                if (char != " " && i % 2 == 0) {
+                if (char != " " && i % 3 == 0) {
                     playBlip();
                 }
                 typingTimeout = setTimeout(typeWriter, typeSpeed)
