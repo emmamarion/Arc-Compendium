@@ -1,11 +1,13 @@
 const dialogueContent = {
     home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website! If I'm taking too long to talk, try clicking on the speech bubble.",
-    about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user expierence (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
+    about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user experience (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
-
+document.querySelector('#homeBtn').addEventListener('click', () => startTyping('home'));
+document.querySelector('#aboutBtn').addEventListener('click', () => startTyping('about'));
+document.querySelector('#muteBtn').addEventListener('click', () => toggleMute());   
 const element = document.querySelector(".typewriter");
 const container = document.querySelector("#typewriter-container");
-const speechBubble = document.querySelector(".speech-bubble")
+const speechBubble = document.querySelector(".speech-bubble");
 let currentFullText = "";
 
 const typeSpeed = 50; // miliseconds per character
@@ -30,16 +32,16 @@ for (let i = 0; i < poolSize; i++) {
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
 
-    // Pick text from array and store globaly for skip function
+    // Pick text from array and store globally for skip function
     currentFullText = dialogueContent[sectionKey];
 
     // Stop current typing
     clearTimeout(typingTimeout)
 
-    // Accessability: update aria label immediately for screen readers
+    // Accessibility: update aria label immediately for screen readers
     container.setAttribute("aria-label", currentFullText);
 
-    // Accessability: Move the screen reader to read the new label
+    // Accessibility: Move the screen reader to read the new label
     container.focus();
 
     // Clear text
