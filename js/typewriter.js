@@ -1,5 +1,5 @@
 const dialogueContent = {
-    home: "Welcome to my website!",
+    home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website!",
     about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user expierence (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
 
