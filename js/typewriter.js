@@ -1,5 +1,5 @@
 const dialogueContent = {
-    home: "Welcome to my website! This is a project for my college webdesign class!",
+    home: "Welcome to my website! ALKSjfasd;lkfjhasdlk;jfjha skljdfh adslkjf hasdlkf hskal",
     about: "What's up?"
 };
 
@@ -52,10 +52,25 @@ function startTyping(sectionKey) {
     }
 }
 
+let isMuted = false;
+
 function playBlip() {
+    if (isMuted) return;
+
     const soundClone = talkSound.cloneNode();
     soundClone.playbackRate = 0.8 + Math.random() * 0.4
     soundClone.volume = 0.5;
     soundClone.play()
+}
+
+function toggleMute() {
+    isMuted = !isMuted;
+    const btn = document.querySelector("#muteBtn");
+
+    if (isMuted) {
+        btn.setAttribute("aria-pressed", "true");
+    } else {
+        btn.setAttribute("aria-pressed", "false")
+    }
 }
 
