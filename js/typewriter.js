@@ -11,7 +11,17 @@ let currentFullText = "";
 const typeSpeed = 50; // miliseconds per character
 let typingTimeout;
 
-const talkSound = new Audio("audio/talkingSound.wav");
+// --- AUDIO POOLING SETUP ---
+const audioPool = [];
+const poolSize = 6; // Create 6 copies to reuse. Enough to allow overlap.
+const talkSoundSrc = "audio/talkingSound.wav";
+
+// Initialize the pool once when the page loads
+for (let i = 0; i < poolSize; i++) {
+    const audio = new Audio(talkSoundSrc);
+    audio.volume = 0.5;
+    audioPool.push(audio);
+}
 
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
@@ -57,15 +67,17 @@ function startTyping(sectionKey) {
     }
 }
 
+let poolIndex = 0;
 let isMuted = false;
 
 function playBlip() {
     if (isMuted) return;
 
-    const soundClone = talkSound.cloneNode();
-    soundClone.playbackRate = 0.8 + Math.random() * 0.4
-    soundClone.volume = 0.5;
-    soundClone.play()
+    const audio = audioPool[poolIndex];
+    audio.playbackRate = 0.8 + Math.random() * 0.4;
+    audio.currentTime = 0;
+    audio.play();
+    poolIndex = (poolIndex + 1) % poolSize;
 }
 
 function toggleMute() {
