@@ -47,6 +47,8 @@ for (let i = 0; i < poolSize; i++) {
     audioPool.push(audio);
 }
 
+startTyping('home')
+
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
 
