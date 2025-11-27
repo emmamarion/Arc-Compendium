@@ -2,18 +2,22 @@ const dialogueContent = {
     home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website! If I'm taking too long to talk, try clicking on the speech bubble.",
     about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user experience (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
+
+
+// EVENT LISTENERS
 document.querySelector('#homeBtn').addEventListener('click', () => startTyping('home'));
 document.querySelector('#aboutBtn').addEventListener('click', () => startTyping('about'));
-document.querySelector('#muteBtn').addEventListener('click', () => toggleMute());   
-const element = document.querySelector(".typewriter");
-const container = document.querySelector("#typewriter-container");
-const speechBubble = document.querySelector(".speech-bubble");
-let currentFullText = "";
+document.querySelector('#muteBtn').addEventListener('click', () => toggleMute());
 
+// GLOBAL VARIABLES
+const element = document.querySelector(".typewriter"); // span element
+const container = document.querySelector("#typewriter-container"); // p element
+const speechBubble = document.querySelector(".speech-bubble"); // div element
+let currentFullText = "";
 const typeSpeed = 50; // miliseconds per character
 let typingTimeout;
 
-// --- AUDIO POOLING SETUP ---
+// AUDIO POOLING SETUP
 const audioPool = [];
 let lastSoundTime = 0; // Tracks when the last sound was played
 const poolSize = 6; // Create 6 copies to reuse. Enough to allow overlap.
