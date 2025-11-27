@@ -1,6 +1,6 @@
 const dialogueContent = {
-    home: "Welcome to my website! ALKSjfasd;lkfjhasdlk;jfjha skljdfh adslkjf hasdlkf hskal",
-    about: "What's up?"
+    home: "Welcome to my website!",
+    about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user expierence (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
 
 const element = document.querySelector(".typewriter");
