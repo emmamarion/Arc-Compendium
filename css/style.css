@@ -1,8 +1,11 @@
 .typewriter {
     border-right: 2px solid black; /* the cursor */
     white-space: pre-wrap;
-    font-family: monospace;
     animation: blink 0.75s step-end infinite;
+}
+
+body {
+    font-family: 'Nunito';
 }
 
 .speech-bubble {
