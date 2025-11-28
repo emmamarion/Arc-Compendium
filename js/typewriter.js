@@ -10,6 +10,8 @@ const element = document.querySelector(".typewriter"); // span element
 const container = document.querySelector("#typewriter-container"); // p element
 const speechBubble = document.querySelector(".speech-bubble"); // div element
 const contentSections = document.querySelectorAll(".content-section") // all content sections
+const collapseBtn = document.querySelector(".collapsible-button");
+const bubbleWrapper = document.querySelector(".bubble-wrapper");
 
 // BUTTONS
 const homeBtn = document.querySelector('#homeBtn') // home button
@@ -49,6 +51,16 @@ for (let i = 0; i < poolSize; i++) {
 }
 
 startTyping('home')
+
+collapseBtn.addEventListener("click", () => {
+    bubbleWrapper.classList.toggle("collapsed");
+
+    if (bubbleWrapper.classList.contains("collapsed")){
+        collapseBtn.textContent = "Open Speech Bubble";
+    } else {
+        collapseBtn.textContent = "Close Speech Bubble";
+    }
+});
 
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
