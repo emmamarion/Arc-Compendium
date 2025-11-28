@@ -65,36 +65,12 @@ collapseBtn.addEventListener("click", () => {
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
 
-    // Convert sectionKey to the id of an HTML section element
-    const targetId = "#" + sectionKey + "-content";
-    
-    // Hide all sections
-    contentSections.forEach(section => {
-        section.classList.add('hidden');
-    });
-
-    // Get the section we wanto show
-    const targetSelection = document.querySelector(targetId);
-
-    // Show it
-    if (targetSelection) {
-        targetSelection.classList.remove('hidden')
-    }
-
     // Pick text from array and store globally for skip function
     currentFullText = dialogueContent[sectionKey];
 
-    // Stop current typing
-    clearTimeout(typingTimeout)
-
-    // Accessibility: update aria label immediately for screen readers
-    container.setAttribute("aria-label", currentFullText);
-
-    // Accessibility: Move the screen reader to read the new label
-    container.focus();
-
-    // Clear text
-    element.textContent = "";
+    updateSectionVisibility(sectionKey);
+    updateAccessibilityAttributes(currentFullText);
+    resetTypingAnimation();
 
     // Handle reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -104,24 +80,52 @@ function startTyping(sectionKey) {
     element.textContent = currentFullText;
     element.style.borderRight = 'none'; // Remove cursor
     } else {
-        element.style.borderRight = '2px solid black'; // Restore cursor in case preferences change
-        let i = 0
-        function typeWriter() {
-            if (i < currentFullText.length){
-                let char = currentFullText.charAt(i);
-                element.textContent += char
-                i++;
-
-                if (char != " " && i % 2 == 0) {
-                    playBlip();
-                }
-                typingTimeout = setTimeout(typeWriter, typeSpeed)
-            }
-        }
-        typeWriter();   
+        runTypewriterEffect();
     }
 }
 
+function updateSectionVisibility(sectionKey) {
+    // Hide all sections
+    const targetId = "#" + sectionKey + "-content";
+    contentSections.forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // Show target section
+    const targetSelection = document.querySelector(targetId);
+    if (targetSelection) {
+        targetSelection.classList.remove('hidden')
+    }
+}
+
+function updateAccessibilityAttributes(currentFullText) {
+    // Update aria label for screen readers
+    container.setAttribute("aria-label", currentFullText);
+
+    // Move the screen reader to read the new label
+    container.focus();
+}
+
+function resetTypingAnimation() {
+    clearTimeout(typingTimeout);
+    element.textContent = "";
+    element.style.borderRight = '2px solid black';
+}
+
+function runTypewriterEffect() {
+    let i = 0;
+    function loop() {
+        if (i < currentFullText.length){
+            let char = currentFullText.charAt(i);
+            element.textContent += char;
+            i++;
+
+            if (char != " " && i % 2 == 0) playBlip();
+            typingTimeout = setTimeout(loop, typeSpeed);
+        }
+    }
+    loop();
+}
 let poolIndex = 0;
 let isMuted = true;
 
