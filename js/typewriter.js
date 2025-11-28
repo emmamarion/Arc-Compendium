@@ -23,6 +23,7 @@ homeBtn.addEventListener('click', () => startTyping('home'));
 writingBtn.addEventListener('click', () => startTyping('writing'))
 photoBtn.addEventListener('click', () => startTyping('photography'));
 aboutBtn.addEventListener('click', () => startTyping('about'));
+speechBubble.addEventListener('click', () => skipDialogue());
 
 muteBtn.addEventListener('click', () => toggleMute());
 
