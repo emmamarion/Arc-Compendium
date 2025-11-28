@@ -10,7 +10,6 @@ const element = document.querySelector(".typewriter"); // span element
 const container = document.querySelector("#typewriter-container"); // p element
 const speechBubble = document.querySelector(".speech-bubble"); // div element
 const contentSections = document.querySelectorAll(".content-section") // all content sections
-const collapseBtn = document.querySelector(".collapsible-button");
 const bubbleWrapper = document.querySelector(".bubble-wrapper");
 
 // BUTTONS
@@ -25,7 +24,7 @@ homeBtn.addEventListener('click', () => startTyping('home'));
 writingBtn.addEventListener('click', () => startTyping('writing'))
 photoBtn.addEventListener('click', () => startTyping('photography'));
 aboutBtn.addEventListener('click', () => startTyping('about'));
-speechBubble.addEventListener('click', () => skipDialogue());
+speechBubble.addEventListener('click', () => skipAndCollapseDialogue());
 
 muteBtn.addEventListener('click', () => toggleMute());
 
@@ -52,21 +51,15 @@ for (let i = 0; i < poolSize; i++) {
 
 startTyping('home')
 
-collapseBtn.addEventListener("click", () => {
-    bubbleWrapper.classList.toggle("collapsed");
-
-    if (bubbleWrapper.classList.contains("collapsed")){
-        collapseBtn.textContent = "Open Speech Bubble";
-    } else {
-        collapseBtn.textContent = "Close Speech Bubble";
-    }
-});
-
 function startTyping(sectionKey) {
     if (!dialogueContent[sectionKey]) return;
 
     // Pick text from array and store globally for skip function
     currentFullText = dialogueContent[sectionKey];
+
+    if (container.classList.contains("collapsed")) {
+        
+    }
 
     updateSectionVisibility(sectionKey);
     updateAccessibilityAttributes(currentFullText);
@@ -152,8 +145,18 @@ function toggleMute() {
     }
 }
 
+function skipAndCollapseDialogue() {
+    skipDialogue();
+    collapse();
+}
+
 function skipDialogue() {
     clearTimeout(typingTimeout);
     element.textContent = currentFullText;
     element.style.borderRight = 'none';
+}
+
+function collapse() {
+    container.classList.toggle('collapsed');
+    bubbleWrapper.classList.toggle('collapsed')
 }
