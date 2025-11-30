@@ -62,8 +62,15 @@ header {
 
 
 
-.photogallery {
+#photo-gallery {
     display: grid;
+    grid-template-columns: auto;
+    place-items: center;
+    gap: 10px;
+}
+
+#photo-gallery img {
+    width: 300px;
 }
 
 .hidden {
