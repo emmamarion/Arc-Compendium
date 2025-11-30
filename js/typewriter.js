@@ -1,9 +1,15 @@
-const dialogueContent = {
+const sectionDialogue = {
     home: "Welcome to my website! My name is Swirly Wirly Toffee, but you can just call me Toffee. Click on any of the buttons on my tail to explore the website! If I'm taking too long to talk, try clicking on the speech bubble.",
     writing: "WRITING",
-    photography: "PHOTAGRAPHY!",
+    photography: "Emma likes to leave her photos here for me to look at. Click on any of them and I can tell you more about them!",
     about: "The owner of this website is Emma Marion. She's a Junior at the University of Michigan School of Information (UMSI) studying user experience (UX) design. She actually built this website for her final project in her web design class! How cool is that?"
 };
+
+const photoDialogue = {
+    tinyhouse: "",
+    twochairs: "",
+    westbay: "This one was taken on Traverse City's west bay. Back when the photo was taken, there was a lot of construction happening over there. Emma tells me it was to build a roundabout, and it's finished now! Maybe she'll show me a picture some day...",
+}
 
 // GLOBAL VARIABLES
 const element = document.querySelector(".typewriter"); // span element
@@ -52,17 +58,20 @@ for (let i = 0; i < poolSize; i++) {
 startTyping('home')
 
 function startTyping(sectionKey) {
-    if (!dialogueContent[sectionKey]) return;
+    if (sectionDialogue[sectionKey]) {
+        updateSectionVisibility(sectionKey);
+        updateAccessibilityAttributes(currentFullText);
 
-    // Pick text from array and store globally for skip function
-    currentFullText = dialogueContent[sectionKey];
+        // Pick text from array and store globally for skip function
+        currentFullText = sectionDialogue[sectionKey];
+    } else {
+        currentFullText = photoDialogue[sectionKey];
+    }
 
     if (container.classList.contains("collapsed")) {
         
     }
 
-    updateSectionVisibility(sectionKey);
-    updateAccessibilityAttributes(currentFullText);
     resetTypingAnimation();
 
     // Handle reduced motion
