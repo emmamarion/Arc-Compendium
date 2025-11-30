@@ -148,4 +148,8 @@ header {
   position: static;
   width: auto;
   height: auto;
+  margin-top: -50px;
+  padding: 15px;
+  background-color: lightgray;
+  z-index: 1000;
 }
