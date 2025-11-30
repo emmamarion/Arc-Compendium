@@ -124,6 +124,10 @@ header {
     #photo-gallery {
         grid-template-columns: auto auto auto;
     }
+
+    #photo-gallery img {
+        width: 400px
+    }
 }
 
 /* ACCESSIBILITY: Disable effect if user prefers reduced motion */
