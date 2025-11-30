@@ -71,6 +71,7 @@ header {
 
 #photo-gallery img {
     width: 300px;
+    cursor: pointer;
 }
 
 .hidden {
@@ -98,6 +99,9 @@ header {
     .speech-bubble {
         max-width: 700px;
     }  
+    #photo-gallery {
+        grid-template-columns: auto auto;
+    }
 }
 
 /* LAPTOP */
@@ -112,6 +116,9 @@ header {
 
     #muteBtn {
         display: initial;
+    }
+    #photo-gallery {
+        grid-template-columns: auto auto auto;
     }
 }
 
