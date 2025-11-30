@@ -18,7 +18,7 @@ const container = document.querySelector("#typewriter-container"); // p element
 const speechBubble = document.querySelector(".speech-bubble"); // div element
 const contentSections = document.querySelectorAll(".content-section") // all content sections
 const bubbleWrapper = document.querySelector(".bubble-wrapper");
-const galleryImages = document.querySelectorAll("#photo-gallery img");
+const galleryImgBtns = document.querySelectorAll("#photo-gallery button");
 
 // BUTTONS
 const homeBtn = document.querySelector('#homeBtn') // home button
@@ -35,15 +35,13 @@ aboutBtn.addEventListener('click', () => startTyping('about'));
 speechBubble.addEventListener('click', () => skipAndCollapseDialogue());
 muteBtn.addEventListener('click', () => toggleMute());
 
-galleryImages.forEach(image => {
-    image.addEventListener("click", () => {
-        // Extract filename from image
-        const key = image.getAttribute('src').split('/').pop().split('.')[0];
+galleryImgBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        // Extract ID from button that matched
+        const key = button.id
         startTyping(key); 
     })
 })
-
-
 
 let currentFullText = "";
 const typeSpeed = 50; // miliseconds per character
@@ -78,13 +76,9 @@ function startTyping(sectionKey) {
         currentFullText = photoDialogue[sectionKey];
     }
 
-    if (container.classList.contains("collapsed")) {
-        
-    }
-
     resetTypingAnimation();
 
-    // Handle reduced motion
+    // Check every time dialogue starts in case user preferences change
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
