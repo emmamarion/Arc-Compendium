@@ -1,5 +1,7 @@
 body {
     font-family: 'Nunito';
+    background-color: #f0e6d2;
+    color: #333;
 }
 
 header {
@@ -7,6 +9,25 @@ header {
     top: 0;
     border-bottom: 2px solid black;
     padding-bottom: 10px;
+}
+
+.cat-body {
+    width: 400px;
+    height: auto;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+nav {
+    background-image: url("../images/toffee_assets/toffeeTail.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .typewriter {
