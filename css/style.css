@@ -4,40 +4,47 @@ body {
     color: #333;
 }
 
-header {
-    position: sticky;
-    top: 0;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-    background-color: white;
-}
-
-.cat-body {
-    height: 160px;
-    z-index: 10;
-    position: sticky;
-    top: 0;
-    left: 0;
-}
-
-#homeBtn {
+button {
     background: none;
     border: none;
-    padding: none;
+    padding: 0;
     cursor: pointer;
 }
 
+header {
+    position: sticky;
+    top: 5px;
+    border-bottom: 4px solid black;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 20px;
+}
+
 nav {
-    background-image: url("../images/toffee_assets/toffeeTail.png");
-    background-repeat: no-repeat;
-    background-size: 75% auto;
-    background-position: right;
-    min-height: 50px;
     display: grid;
     grid-template-columns: auto auto auto auto auto;
     justify-content: space-between;
     align-items: center;
-    padding-right: 0px
+    padding-right: 100px;
+}
+
+nav button:hover {
+    border-bottom: 3px solid black;
+}
+
+button.shown {
+    border-bottom: 3px solid black;
+}
+
+#homeBtn, #muteBtn {
+    border: none;
+}
+
+.cat-body {
+    height: 100px;
+    z-index: 10;
+    top: 0;
+    left: 0;
 }
 
 .typewriter {
@@ -60,11 +67,8 @@ nav {
 
 .bubble-wrapper{
     position: sticky;
-    top: 200px;
+    top: 150px;
     min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     margin: 20px;
 }
 
@@ -115,6 +119,10 @@ nav {
 
 #muteBtn {
     display: none;
+}
+
+#muteBtn img {
+    width: 50px;
 }
 
 @keyframes blink {
