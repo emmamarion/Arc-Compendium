@@ -9,7 +9,10 @@ const photoDialogue = {
     tinyhouse: "Emma isn't really sure what this is, but she thinks it's funny that it looks like a tiny house. Me? I'm already in talks to take out a loan!",
     twochairs: "Ahhh, ruby ellen farm. One of Emma's favorite spots to go for walks in Traverse City. I wonder if anyone ever sits in those chairs...",
     westbay: "This one was taken on Traverse City's west bay. Back when the photo was taken, there was a lot of construction happening over there. Emma tells me it was to build a roundabout, and it's finished now! Maybe she'll show me a picture some day...",
-    rainbow: "Fun fact about this one: Emma used the upper right corner of this picture as the album cover art for her first hit lofi single. She says that it made 4 cents. That sounds like a lot to me!" 
+    rainbow: "Fun fact about this one: Emma used the upper right corner of this picture as the album cover art for her first hit lofi single. She brags that it made 4 cents, which sounds like a lot.",
+    rosielore: "This is Emma's girlfriend Rosie! they were going to do this whole 'us lore' project together, but it never panned out. This is one of the concept art pieces Emma made for it!",
+    snowlore: "Sometimes, when driving around up north you'll find secret beaches tucked away off the highway. Emma likes going to them in the winter and taking photos, brrrr.. ",
+    carlore: "This one was taken in Californa somewhere in La Jolla. All of the cars look kinda scary at night...",
 }
 
 // GLOBAL VARIABLES
@@ -68,14 +71,16 @@ startTyping('home')
 function startTyping(sectionKey) {
     if (sectionDialogue[sectionKey]) {
         updateSectionVisibility(sectionKey);
-        updateAccessibilityAttributes(currentFullText);
-
         // Pick text from array and store globally for skip function
         currentFullText = sectionDialogue[sectionKey];
     } else {
         currentFullText = photoDialogue[sectionKey];
     }
-
+    // Update aria label for screen readers
+    container.setAttribute("aria-label", currentFullText);
+    // Move the screen reader to read the new label
+    container.focus();
+    
     resetTypingAnimation();
 
     // Check every time dialogue starts in case user preferences change
@@ -102,14 +107,6 @@ function updateSectionVisibility(sectionKey) {
     if (targetSelection) {
         targetSelection.classList.remove('hidden')
     }
-}
-
-function updateAccessibilityAttributes(currentFullText) {
-    // Update aria label for screen readers
-    container.setAttribute("aria-label", currentFullText);
-
-    // Move the screen reader to read the new label
-    container.focus();
 }
 
 function resetTypingAnimation() {
