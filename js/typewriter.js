@@ -12,7 +12,7 @@ const photoDialogue = {
     rainbow: "Fun fact about this one: Emma used the upper right corner of this picture as the album cover art for her first hit lofi single. She brags that it made 4 cents, which sounds like a lot.",
     rosielore: "This is Emma's girlfriend Rosie! they were going to do this whole 'us lore' project together, but it never panned out. This is one of the concept art pieces Emma made for it!",
     snowlore: "Sometimes, when driving around up north you'll find secret beaches tucked away off the highway. Emma likes going to them in the winter and taking photos, brrrr.. ",
-    carlore: "This one was taken in Californa somewhere in La Jolla. All of the cars look kinda scary at night...",
+    carlore: "This one was taken in California somewhere in La Jolla. All of the cars look kinda scary at night...",
 }
 
 // GLOBAL VARIABLES
@@ -58,7 +58,6 @@ let typingTimeout;
 
 // AUDIO POOLING SETUP
 const audioPool = [];
-let lastSoundTime = 0; // Tracks when the last sound was played
 const poolSize = 6; // Create 6 copies to reuse. Enough to allow overlap.
 const talkSoundSrc = "audio/talkingSound.wav";
 
@@ -116,7 +115,7 @@ function updateSectionVisibility(sectionKey) {
     if (targetSelection) {
         targetSelection.classList.remove('hidden');
         const targetBtnID = "#" + sectionKey + "Btn";
-        targetBtn = document.querySelector(targetBtnID);
+        const targetBtn = document.querySelector(targetBtnID);
         targetBtn.classList.add('shown');
         previousSection.classList.remove('shown');
         previousSection = targetBtn;
